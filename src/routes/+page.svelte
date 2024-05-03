@@ -1,6 +1,10 @@
 <script>
-	import './style.css';
+	import './css/style.css';
 	import Board from './Board.svelte';
+
+	const board = [['','',''],['','X',''],['','','']];
 </script>
 
-<Board />
+<div class="app">
+    <Board board={board}/>
+</div>

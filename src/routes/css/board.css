@@ -1,0 +1,19 @@
+.board {
+    display: flex;
+    flex-direction: column;
+}
+
+.ligne {
+    display: flex;
+    flex-direction: row;
+}
+
+.cellule {
+    border: solid #000 1px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
