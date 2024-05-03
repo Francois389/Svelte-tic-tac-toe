@@ -1,4 +1,8 @@
-# create-svelte
+# Svelte Tic Tac Toe
+
+Le Tic Tac Toe développer avec le framework [Svelte](https://svelte.dev/).
+
+# Create a project with svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
