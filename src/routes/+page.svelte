@@ -14,6 +14,8 @@
 
 </script>
 
+<h1>Tic Tac Toe</h1>
 <div class="app">
+    
     <Board board={board} on:coordonnee={handleClick} />
 </div>
