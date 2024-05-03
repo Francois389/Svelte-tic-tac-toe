@@ -1,9 +1,9 @@
 <script>
 	import './css/board.css';
-	import { Board } from './data/Board.ts';
 	import { createEventDispatcher } from 'svelte';
 
-	export let board =  [['','',''],['','',''],['','','']];;
+	export let board = [['', '', ''], ['', '', ''], ['', '', '']];
+	export let winingSquare = [-1];
 
 	const clickDispatch = createEventDispatcher();
 
@@ -14,13 +14,18 @@
 		});
 	}
 
+	function isWiningSquare(ligne, colonne) {
+		return winingSquare.includes(ligne * 3 + colonne);
+	}
 
+	console.log(winingSquare);
 </script>
+
 <div class="board">
     {#each board as ligne, indiceLigne}
         <div class="ligne">
             {#each ligne as cellule, indiceColonne}
-                <button class="cellule"
+                <button class="cellule {isWiningSquare(indiceLigne, indiceColonne) ? 'wining': ''}"
                         on:click={() => {handleClick(indiceLigne, indiceColonne)}}
                 >
                     {cellule}
