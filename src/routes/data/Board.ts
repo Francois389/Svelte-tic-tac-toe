@@ -10,10 +10,11 @@ export class Board {
     }
 
 
-    clique(ligne: number, colonne: number) {
+    clique(ligne: number, colonne: number, playerSymbole: string) {
         if (this.board[ligne][colonne] === '') {
-            this.board[ligne][colonne] = 'X'
+            this.board[ligne][colonne] = playerSymbole
+            return true
         }
-        return this
+        return false
     }
 }
