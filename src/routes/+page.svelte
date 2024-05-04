@@ -1,7 +1,6 @@
 <script>
 	import './css/style.css';
 	import Board from './Board.svelte';
-	import { Board as BoardClasse } from './data/Board.ts';
 	import { Game } from './data/Game.ts';
 
 	let board = [['', '', ''], ['', '', ''], ['', '', '']];
@@ -9,12 +8,21 @@
 	let winingSquare = [-1];
 	let toggled = false;
 
-	function handleClick(event) {
-		toggled = !toggled;
-		game.click(event.detail.indiceLigne, event.detail.indiceColonne);
+	function forceUpdate() {
+		toggled = !toggled; // pour forcer la mise à jour du Board
 		game = game;
 		board = game.board;
 		winingSquare = game.winingSquare;
+	}
+
+	function handleClick(event) {
+		game.click(event.detail.indiceLigne, event.detail.indiceColonne);
+		forceUpdate();
+	}
+
+	function handleReset() {
+		game.reset();
+		forceUpdate();
 	}
 
 </script>
@@ -24,10 +32,17 @@
     <div class="status">
         C'est au joueur { game.currentPlayer() } de jouer
     </div>
-    {#key toggled}
-        <Board board={board}
-               winingSquare={winingSquare}
-               on:coordonnee={handleClick}
-        ></Board>
-    {/key}
+    <div class="playingArea">
+        {#key toggled}
+            <Board board={board}
+                   winingSquare={winingSquare}
+                   on:coordonnee={handleClick}
+            ></Board>
+        {/key}
+        <div class="action">
+            <button class="reset" on:click={handleReset}>
+                Effacer les pions
+            </button>
+        </div>
+    </div>
 </div>

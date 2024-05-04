@@ -22,7 +22,7 @@ export class Board {
         return this.board.every(row => row.every(cell => cell !== ''));
     }
 
-
-
-
+    public reset() {
+        this.board = [['', '', ''], ['', '', ''], ['', '', '']];
+    }
 }

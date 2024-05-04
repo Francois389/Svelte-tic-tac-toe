@@ -83,4 +83,10 @@ export class Game {
 
         this._winingSquare = tempWiningSquare;
     }
+
+    public reset() {
+        this._board.reset()
+        this._nbTour = 0
+        this._winingSquare = []
+    }
 }
