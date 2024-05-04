@@ -9,7 +9,7 @@
 }
 
 .cellule {
-    border: solid #000 1px;
+    border: solid #999 1px;
     width: 100px;
     height: 100px;
     display: flex;
@@ -19,7 +19,11 @@
     background-color: transparent;
 }
 
-.cellule.wining {
+.content {
+    color: white;
+}
+
+.cellule.wining > .content {
     color: green;
     animation-name: fade;
     animation-duration: 1.5s;

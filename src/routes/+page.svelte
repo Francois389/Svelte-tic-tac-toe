@@ -68,13 +68,11 @@
             </button>
             <div class="timeTravel">
                 {#each gameHistory as pastGame, i}
-                    <div>
-                        <button on:click={() => handleTravelTime(pastGame, i)}
-                                class="{i === gameHistory.length - 1 ? 'disabled' : ''}"
-                                disabled={i === gameHistory.length - 1}>
-                            {i + 1}. Joueur {pastGame.currentPlayer} à joué en ({pastGame.ligne}, {pastGame.colonne})
-                        </button>
-                    </div>
+                    <button on:click={() => handleTravelTime(pastGame, i)}
+                            class="{i === gameHistory.length - 1 ? 'disabled' : ''}"
+                            disabled={i === gameHistory.length - 1}>
+                        {i + 1}. Joueur {pastGame.currentPlayer} à joué en ({pastGame.ligne}, {pastGame.colonne})
+                    </button>
                 {/each}
             </div>
         </div>
