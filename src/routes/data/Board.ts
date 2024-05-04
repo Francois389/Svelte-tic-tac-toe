@@ -25,4 +25,10 @@ export class Board {
     public reset() {
         this.board = [['', '', ''], ['', '', ''], ['', '', '']];
     }
+
+    public copie(): Board {
+        const newBoard = new Board()
+        newBoard.board = this.getBoard()
+        return newBoard
+    }
 }

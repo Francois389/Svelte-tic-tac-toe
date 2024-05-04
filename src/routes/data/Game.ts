@@ -1,9 +1,7 @@
 import { Board } from './Board.ts';
 
 export class Game {
-
-
-    private readonly players = ['X', 'O'];
+    private static readonly players = ['X', 'O'];
 
     private _board: Board;
     private _nbTour: number;
@@ -24,15 +22,23 @@ export class Game {
     }
 
     public currentPlayer(): string {
-        return this.players[this._nbTour % 2];
+        return Game.players[this._nbTour % 2];
     }
 
-    public click(ligne: number, colonne: number) {
+    /**
+     * Place si possible le pion du joueur courant sur cellule donnée par la ligne et la colonne
+     * @param ligne
+     * @param colonne
+     * @return true si le pion a été posé, false sinon
+     */
+    public click(ligne: number, colonne: number): boolean {
+        let pionIsPlace = false;
         if (!this.isGameOver()) {
-            const resultat = this._board.clique(ligne, colonne, this.currentPlayer());
-            if (resultat) this._nbTour++;
+            pionIsPlace = this._board.clique(ligne, colonne, this.currentPlayer());
+            if (pionIsPlace) this._nbTour++;
         }
         this.updateWinigSquare();
+        return pionIsPlace;
     }
 
     public isGameOver(): boolean {
@@ -85,8 +91,36 @@ export class Game {
     }
 
     public reset() {
-        this._board.reset()
-        this._nbTour = 0
-        this._winingSquare = []
+        this._board.reset();
+        this._nbTour = 0;
+        this._winingSquare = [];
+    }
+
+    public copie(): Game {
+        const newGame = new Game();
+        newGame._board = this._board.copie();
+        newGame._nbTour = this._nbTour;
+        newGame._winingSquare = [...this._winingSquare];
+
+        return newGame;
+    }
+
+    public createGameHistory(ligne, colonne) {
+        const resultat = {
+            'game': this.copie(),
+            'currentPlayer': Game.players[(this._nbTour + 1) % 2],
+            'ligne': ligne,
+            'colonne': colonne
+        };
+
+        return resultat;
+    }
+
+    public getWinner(): string {
+        return this._winingSquare.length == 0 ? '' : Game.players[(this._nbTour + 1) % 2];
+    }
+
+    public isNull(): boolean {
+        return this._board.isFull();
     }
 }

@@ -24,4 +24,14 @@ body {
 
 .action {
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 180px;
+}
+
+.timeTravel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }

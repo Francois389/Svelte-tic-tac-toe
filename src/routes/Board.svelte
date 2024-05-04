@@ -4,6 +4,7 @@
 
 	export let board = [['', '', ''], ['', '', ''], ['', '', '']];
 	export let winingSquare = [-1];
+	export let matchNull = false;
 
 	const clickDispatch = createEventDispatcher();
 
@@ -17,18 +18,17 @@
 	function isWiningSquare(ligne, colonne) {
 		return winingSquare.includes(ligne * 3 + colonne);
 	}
-
-	console.log(winingSquare);
 </script>
 
 <div class="board">
     {#each board as ligne, indiceLigne}
         <div class="ligne">
             {#each ligne as cellule, indiceColonne}
-                <button class="cellule {isWiningSquare(indiceLigne, indiceColonne) ? 'wining': ''}"
-                        on:click={() => {handleClick(indiceLigne, indiceColonne)}}
+                <button
+                    class="cellule {isWiningSquare(indiceLigne, indiceColonne) ? 'wining': ''} {matchNull ? 'null' : ''}"
+                    on:click={() => {handleClick(indiceLigne, indiceColonne)}}
                 >
-                    {cellule}
+                    <span class="content">{cellule}</span>
                 </button>
             {/each}
         </div>
